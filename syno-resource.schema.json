@@ -5,16 +5,41 @@
     "type": "object",
     "properties": {
         "port-config": {
+            "description": "Install / uninstall service port config file during package install / uninstall.",
             "type": "object",
             "properties": {
                 "protocol-file": {
+                    "description": ".sc file's relative path under /var/package/{$package}/target/",
                     "type": "string"
                 }
             }
         },
         "systemd-user-unit": {
-            "type": "object",
-            "additionalProperties": false
+            "additionalProperties": false,
+            "default": {},
+            "description": "The package framework would copy files at conf/systemd/pkguser-[customname] to home/.config/systemd/user/ on acquired and remove them on released.",
+            "type": "object"
+        },
+        "usr-local-linker": {
+            "description": "Package's executables and library files should be installed to /usr/local. This worker link / unlink files to /usr/local/{bin,lib,etc} during package start / stop.",
+            "properties": {
+                "bin": {
+                    "description": "String array, list of files to be linked under /usr/local/bin/.",
+                    "type": "array"
+                },
+                "etc": {
+                    "description": "String array, list of files to be linked under /usr/local/lib/.",
+                    "type": "array"
+                },
+                "lib": {
+                    "description": "String array, list of files to be linked under /usr/local/etc/",
+                    "type": "array"
+                },
+                "relpath": {
+                    "description": "String, target file's relative path under /var/packages/${package}/target/.",
+                    "type": "string"
+                }
+            }
         }
     },
     "additionalProperties": false
