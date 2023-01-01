@@ -4,6 +4,40 @@
     "description": "Defines a schema for Synology package resources",
     "type": "object",
     "properties": {
+        "php": {
+            "description": "Packages can carry custom php.ini and fpm.conf files. This worker installs / uninstalls these config files during package start / stop.",
+            "type": "object",
+            "properties": {
+                "fpm-conf": {
+                    "description": "Object array, list of fpm.conf files to install",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "relpath": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "php-ini": {
+                    "description": "Object array, list of php.ini files to install",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "relpath": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "relpath": {
+                    "description": "Target file's relative path under /var/packages/${package}/target/.",
+                    "type": "string"
+                }
+            }
+        },
         "port-config": {
             "description": "Install / uninstall service port config file during package install / uninstall.",
             "type": "object",
