@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Synology Resource Schema",
+    "description": "Defines a schema for Synology package resources",
+    "type": "object",
+    "properties": {
+        "port-config": {
+            "type": "object",
+            "properties": {
+                "protocol-file": {
+                    "type": "string"
+                }
+            }
+        },
+        "systemd-user-unit": {
+            "type": "object",
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}
